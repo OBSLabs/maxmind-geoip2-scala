@@ -22,6 +22,7 @@ case class IpLocation(
                        countryName: Option[String],
                        region: Option[String],
                        city: Option[String],
+                       metroCode: Option[Integer],
                        geoPoint: Option[Point],
                        postalCode: Option[String],
                        continent: Option[String])
@@ -53,6 +54,7 @@ object IpLocation {
     if (omni.getCountry != null) Option(omni.getCountry.getName) else None,
     if (omni.getMostSpecificSubdivision != null) Option(omni.getMostSpecificSubdivision.getName) else None,
     if (omni.getCity != null) Option(omni.getCity.getName) else None,
+    if (omni.getLocation != null) Option(omni.getLocation.getMetroCode) else None,
     if (omni.getLocation != null) combineLatLong(jDoubleOptionify(omni.getLocation.getLatitude), jDoubleOptionify(omni.getLocation.getLongitude)) else None,
     if (omni.getPostal != null) Option(omni.getPostal.getCode) else None,
     if (omni.getContinent != null) Option(omni.getContinent.getName) else None
